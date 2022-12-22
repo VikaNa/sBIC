@@ -1,0 +1,2 @@
+text_generation/__pycache__/
+text_generation/.ipybn_checkpoints/
