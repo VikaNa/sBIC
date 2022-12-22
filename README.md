@@ -28,7 +28,7 @@ import numpy as np
 # abstracts data
 doc_topic = pickle.load(open('data/abstracts/BoA_data_topicweights', 'rb'))
 topic_word = pickle.load(open('data/abstracts/BoA_data_word_weights', 'rb'))
-text_length = np.load('ata/abstracts/text_length.npy')
+text_length = np.load('data/abstracts/text_length.npy')
 wordlist = np.load("data/abstracts/BoA_data_wordlist.npy")
 ```
 
