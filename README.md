@@ -53,6 +53,8 @@ count_data = pickle.load(open('data/abstracts/BoA_count_data', 'rb'))
 min_k = 2
 max_k = 32
 topic_range = range(min_k, max_k+1, 1)
+# define path the estimated models should be stored in
+path = "results/abstracts"
 for k in topic_range:
     t001 = time.time()
     print('number of topics=', k)
@@ -62,12 +64,30 @@ for k in topic_range:
                             n_iter=1000, 
                             random_state=1,
                             refresh=1000).fit(count_data)
-    pickle.dump(model_fitted, open(f'{path}/abstract/lda_{k}Topics', 'wb'))
+    pickle.dump(model_fitted, open(f'{path}/lda_{k}Topics', 'wb'))
     t002 = time.time()
     print('Time to estimate model with ' + str(k) + ' topics = ', t002 - t001)
 ```
 
 <h2 align="center">Evaluation metrics</h2>
 
+```python 
+# Load models
+step = 1
+models = [pickle.load(open(f'{path}/lda_{i}Topics,'rb')) for k in topic_range]
 
-<h2 align="center">Results</h2>
+# Calculate Cao_Juan and Mimno metrics using tm toolkit package
+from metrics.tm_metrics_func import *
+cao_juan, coherence = calculate_tm_metrics(models, count_data)
+
+# Calculate OpTop metric
+from metrics.optop_func import *
+optop_5 = calculate_OpTop(count_data, models, min_k, max_k, cutoff=0.05)
+optop_20 = calculate_OpTop(count_data, models, min_k, max_k, cutoff=0.2)
+
+# Calculate sBIC
+from metrics.sBIC_function_models import *
+sBIC = calculate_sBIC_models(count_data, models, 
+                             min_n_topics=min_k, max_n_topics=max_k, sampling='gibbs',
+                             restarts_number = 1, n_iter = 1000, steps=1, precision_value = 100000)
+```
