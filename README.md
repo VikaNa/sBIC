@@ -49,7 +49,10 @@ corpus_gen = generate_text_from_lda(text_length,
 <h2 align="center">Model estimation</h2>
 
 ```python
-count_data = pickle.load()
+count_data = pickle.load(open('data/abstracts/BoA_count_data', 'rb'))
+min_k = 2
+max_k = 32
+topic_range = range(min_k, max_k+1, 1)
 for k in topic_range:
     t001 = time.time()
     print('number of topics=', k)
