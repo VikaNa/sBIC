@@ -91,3 +91,22 @@ sBIC = calculate_sBIC_models(count_data, models,
                              min_n_topics=min_k, max_n_topics=max_k, sampling='gibbs',
                              restarts_number = 1, n_iter = 1000, steps=1, precision_value = 100000)
 ```
+
+<h2 align="center">References</h2>
+
+If you use sBIC, please cite: 
+
+
+Bystrov, V., Naboka, V., Staszewska-Bystrova, A. and Winker, P. (2022a). Choosing the Number of Topics in LDA Models - A Monte Carlo Comparison of Selection Criteria. ArXiv, [abs/2212.14074](https://arxiv.org/abs/2212.14074).
+
+BibTex code:
+```
+@misc{bystrov2023choosing,
+      title={Choosing the Number of Topics in LDA Models -- A Monte Carlo Comparison of Selection Criteria}, 
+      author={Victor Bystrov and Viktoriia Naboka and Anna Staszewska-Bystrova and Peter Winker},
+      year={2023},
+      eprint={2212.14074},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
